@@ -20,12 +20,7 @@ def get_documents(filename):
         return [remove_useless_words(row[0]) for row in reader]
 
 
-def main():
-    documents = []
-    ls = os.listdir('data')
-    for filename in ls:
-        documents += get_documents('data/{}'.format(filename))
-
+def main(documents):
     no_features = 1000
 
     # NMF is able to use tf-idf
@@ -59,4 +54,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    documents = []
+    ls = os.listdir('data')
+    ls = [f for f in ls if f.endswith('.csv')]
+    for filename in ls:
+        documents += get_documents('data/{}'.format(filename))
+    main(documents)

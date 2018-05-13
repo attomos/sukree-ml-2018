@@ -24,12 +24,16 @@ def get_tweets(screen_name, cls):
     return [(s.text, cls) for s in statuses]
 
 
+def write_csv(tweets, cls, screen_name):
+    with open('data/{}_{}.csv'.format(cls, screen_name), 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter='\t', quotechar='|', quoting=csv.QUOTE_MINIMAL,
+                            dialect=csv.excel)
+        writer.writerows(tweets)
+
+
 if __name__ == '__main__':
     pathlib.Path('data').mkdir(parents=True, exist_ok=True)
     for cls, screen_names in ACCOUNTS.items():
         for screen_name in screen_names:
             tweets = get_tweets(screen_name, cls)
-            with open('data/{}_{}.csv'.format(cls, screen_name), 'w', newline='') as csvfile:
-                writer = csv.writer(csvfile, delimiter='\t', quotechar='|', quoting=csv.QUOTE_MINIMAL,
-                                    dialect=csv.excel)
-                writer.writerows(tweets)
+            write_csv(tweets, cls, screen_name)
