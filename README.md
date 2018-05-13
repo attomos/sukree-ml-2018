@@ -17,3 +17,10 @@
 ```
 3. Run `fetch_tweets.py` (you need the above credentials) to get recent tweets from the subjects
 4. Run `main.py` to perform NMF and LDA on the data
+
+
+# Credit
+
+Big thanks to this [Medium
+post](https://medium.com/mlreview/topic-modeling-with-scikit-learn-e80d33668730)
+which is an excellent introduction to topic modeling with Scikit Learn
